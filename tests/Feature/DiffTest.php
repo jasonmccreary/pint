@@ -7,11 +7,7 @@ use LaravelZero\Framework\Exceptions\ConsoleException;
 it('determines diff files', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('diff')
-        ->with('main')
-        ->once()
-        ->andReturn([
+    $paths->expects('diff')->with('main')->returns([
             base_path('tests/Fixtures/without-issues-laravel/file.php'),
         ]);
 
@@ -27,10 +23,7 @@ it('determines diff files', function () {
 it('ignores the path argument', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('diff')
-        ->once()
-        ->andReturn([
+    $paths->expects('diff')->returns([
             base_path('tests/Fixtures/without-issues-laravel/file.php'),
         ]);
 
@@ -49,11 +42,7 @@ it('ignores the path argument', function () {
 it('fails when git is not available', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('diff')
-        ->with('main')
-        ->once()
-        ->andThrow(new ConsoleException(1, 'The [--diff] option is only available when using Git.'));
+    $paths->expects('diff')->with('main')->throws(new ConsoleException(1, 'The [--diff] option is only available when using Git.'));
 
     $this->swap(PathsRepository::class, $paths);
 
@@ -63,10 +52,7 @@ it('fails when git is not available', function () {
 it('does not abort when there are no diff files', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('diff')
-        ->once()
-        ->andReturn([]);
+    $paths->expects('diff')->returns([]);
 
     $this->swap(PathsRepository::class, $paths);
 
@@ -82,11 +68,7 @@ it('does not abort when there are no diff files', function () {
 it('parses nested branch names', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('diff')
-        ->with('origin/main')
-        ->once()
-        ->andReturn([
+    $paths->expects('diff')->with('origin/main')->returns([
             base_path('tests/Fixtures/without-issues-laravel/file.php'),
         ]);
 

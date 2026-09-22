@@ -7,10 +7,7 @@ use LaravelZero\Framework\Exceptions\ConsoleException;
 it('determines dirty files', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('dirty')
-        ->once()
-        ->andReturn([
+    $paths->expects('dirty')->returns([
             base_path('tests/Fixtures/without-issues-laravel/file.php'),
         ]);
 
@@ -26,10 +23,7 @@ it('determines dirty files', function () {
 it('ignores the path argument', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('dirty')
-        ->once()
-        ->andReturn([
+    $paths->expects('dirty')->returns([
             base_path('tests/Fixtures/without-issues-laravel/file.php'),
         ]);
 
@@ -48,10 +42,7 @@ it('ignores the path argument', function () {
 it('fails when git is not available', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('dirty')
-        ->once()
-        ->andThrow(new ConsoleException(1, 'The [--dirty] option is only available when using Git.'));
+    $paths->expects('dirty')->throws(new ConsoleException(1, 'The [--dirty] option is only available when using Git.'));
 
     $this->swap(PathsRepository::class, $paths);
 
@@ -61,10 +52,7 @@ it('fails when git is not available', function () {
 it('does not abort when there are no dirty files', function () {
     $paths = Double::for(PathsRepository::class);
 
-    $paths
-        ->shouldReceive('dirty')
-        ->once()
-        ->andReturn([]);
+    $paths->expects('dirty')->returns([]);
 
     $this->swap(PathsRepository::class, $paths);
 
