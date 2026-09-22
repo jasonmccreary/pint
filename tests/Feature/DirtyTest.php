@@ -1,10 +1,11 @@
 <?php
 
+use JMac\Testing\Double;
 use App\Contracts\PathsRepository;
 use LaravelZero\Framework\Exceptions\ConsoleException;
 
 it('determines dirty files', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('dirty')
@@ -23,7 +24,7 @@ it('determines dirty files', function () {
 });
 
 it('ignores the path argument', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('dirty')
@@ -45,7 +46,7 @@ it('ignores the path argument', function () {
 });
 
 it('fails when git is not available', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('dirty')
@@ -58,7 +59,7 @@ it('fails when git is not available', function () {
 })->throws(ConsoleException::class, 'The [--dirty] option is only available when using Git.');
 
 it('does not abort when there are no dirty files', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('dirty')

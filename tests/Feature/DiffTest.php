@@ -1,10 +1,11 @@
 <?php
 
+use JMac\Testing\Double;
 use App\Contracts\PathsRepository;
 use LaravelZero\Framework\Exceptions\ConsoleException;
 
 it('determines diff files', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('diff')
@@ -24,7 +25,7 @@ it('determines diff files', function () {
 });
 
 it('ignores the path argument', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('diff')
@@ -46,7 +47,7 @@ it('ignores the path argument', function () {
 });
 
 it('fails when git is not available', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('diff')
@@ -60,7 +61,7 @@ it('fails when git is not available', function () {
 })->throws(ConsoleException::class, 'The [--diff] option is only available when using Git.');
 
 it('does not abort when there are no diff files', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('diff')
@@ -79,7 +80,7 @@ it('does not abort when there are no diff files', function () {
 });
 
 it('parses nested branch names', function () {
-    $paths = Mockery::mock(PathsRepository::class);
+    $paths = Double::for(PathsRepository::class);
 
     $paths
         ->shouldReceive('diff')
