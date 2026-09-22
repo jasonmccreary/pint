@@ -1,15 +1,15 @@
 <?php
 
-use JMac\Testing\Double;
 use App\Contracts\PathsRepository;
+use JMac\Testing\Double;
 use LaravelZero\Framework\Exceptions\ConsoleException;
 
 it('determines dirty files', function () {
     $paths = Double::for(PathsRepository::class);
 
     $paths->expects('dirty')->returns([
-            base_path('tests/Fixtures/without-issues-laravel/file.php'),
-        ]);
+        base_path('tests/Fixtures/without-issues-laravel/file.php'),
+    ]);
 
     $this->swap(PathsRepository::class, $paths);
 
@@ -24,8 +24,8 @@ it('ignores the path argument', function () {
     $paths = Double::for(PathsRepository::class);
 
     $paths->expects('dirty')->returns([
-            base_path('tests/Fixtures/without-issues-laravel/file.php'),
-        ]);
+        base_path('tests/Fixtures/without-issues-laravel/file.php'),
+    ]);
 
     $this->swap(PathsRepository::class, $paths);
 

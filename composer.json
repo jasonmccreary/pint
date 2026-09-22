@@ -23,24 +23,24 @@
         }
     ],
     "require": {
-        "php": "^8.3.0",
         "ext-json": "*",
         "ext-mbstring": "*",
         "ext-tokenizer": "*",
-        "ext-xml": "*"
+        "ext-xml": "*",
+        "php": "^8.3.0"
     },
     "require-dev": {
         "composer/semver": "^3.4.4",
         "friendsofphp/php-cs-fixer": "^3.95.25",
         "illuminate/view": "^13.31.0",
+        "jasonmccreary/double": "~0.10",
         "larastan/larastan": "^3.11.0",
         "laravel-zero/framework": "^13.0.0",
+        "laravel/agent-detector": "^2.0.2",
         "laravel/prompts": "^0.3.24",
         "mockery/mockery": "^1.6.15",
         "nunomaduro/termwind": "^2.4.0",
-        "pestphp/pest": "^4.7.8",
-        "laravel/agent-detector": "^2.0.2",
-        "jasonmccreary/double": "~0.10"
+        "pestphp/pest": "^4.7.8"
     },
     "autoload": {
         "psr-4": {

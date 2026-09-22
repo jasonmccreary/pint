@@ -1,15 +1,15 @@
 <?php
 
-use JMac\Testing\Double;
 use App\Contracts\PathsRepository;
+use JMac\Testing\Double;
 use LaravelZero\Framework\Exceptions\ConsoleException;
 
 it('determines diff files', function () {
     $paths = Double::for(PathsRepository::class);
 
     $paths->expects('diff')->with('main')->returns([
-            base_path('tests/Fixtures/without-issues-laravel/file.php'),
-        ]);
+        base_path('tests/Fixtures/without-issues-laravel/file.php'),
+    ]);
 
     $this->swap(PathsRepository::class, $paths);
 
@@ -24,8 +24,8 @@ it('ignores the path argument', function () {
     $paths = Double::for(PathsRepository::class);
 
     $paths->expects('diff')->returns([
-            base_path('tests/Fixtures/without-issues-laravel/file.php'),
-        ]);
+        base_path('tests/Fixtures/without-issues-laravel/file.php'),
+    ]);
 
     $this->swap(PathsRepository::class, $paths);
 
@@ -69,8 +69,8 @@ it('parses nested branch names', function () {
     $paths = Double::for(PathsRepository::class);
 
     $paths->expects('diff')->with('origin/main')->returns([
-            base_path('tests/Fixtures/without-issues-laravel/file.php'),
-        ]);
+        base_path('tests/Fixtures/without-issues-laravel/file.php'),
+    ]);
 
     $this->swap(PathsRepository::class, $paths);
 
